@@ -2,8 +2,12 @@ require 'net/http'
 require 'nokogiri'
 require 'sinatra'
 require 'json'
-def getnames(type)
- uri = URI.parse("http://www.seventhsanctum.com/generate.php?Genname=" + type)
+def getnames(generator,type)
+ if type == 'default' or type.nil?
+	 uri = URI.parse("http://www.seventhsanctum.com/generate.php?Genname=" + generator + "&selGenCount=20")
+ else
+	 uri = URI.parse("http://www.seventhsanctum.com/generate.php?Genname=" + generator + "&selGenCount=20&selGenType=" + type)
+ end
  response = Net::HTTP.get_response(uri)
  page = Nokogiri::HTML(response.body)
  a = Array.new
@@ -17,7 +21,11 @@ def getnames(type)
  end
  return a.to_json
 end
-get '/getnames/:type' do
- names = getnames(params['type'])
+get '/getnames/:generator' do
+ names = getnames(params['generator'],'default')
+ return names
+end
+get '/getnames/:generator/:type' do
+ names = getnames(params['generator'],params['type'])
  return names
 end
