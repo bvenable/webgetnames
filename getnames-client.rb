@@ -3,6 +3,9 @@ require 'net/http'
 require 'uri'
 require 'json'
 webgetnames = ENV['WEBGETNAMES']
+if webgetnames.nil?
+ puts 'set environment variable WEBGETNAMES to URL of web service'
+ exit 1 
 if ARGV[0].nil?
  generator = 'superheronameorg'
 else
