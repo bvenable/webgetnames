@@ -6,6 +6,7 @@ webgetnames = ENV['WEBGETNAMES']
 if webgetnames.nil?
  puts 'set environment variable WEBGETNAMES to URL of web service'
  exit 1 
+end
 if ARGV[0].nil?
  generator = 'superheronameorg'
 else

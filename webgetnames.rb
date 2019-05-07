@@ -4,9 +4,9 @@ require 'sinatra'
 require 'json'
 def getnames(generator,type)
  if type == 'default' or type.nil?
-	 uri = URI.parse("http://www.seventhsanctum.com/generate.php?Genname=" + generator + "&selGenCount=20")
+	 uri = URI.parse("https://www.seventhsanctum.com/generate.php?Genname=" + generator + "&selGenCount=20")
  else
-	 uri = URI.parse("http://www.seventhsanctum.com/generate.php?Genname=" + generator + "&selGenCount=20&selGenType=" + type)
+	 uri = URI.parse("https://www.seventhsanctum.com/generate.php?Genname=" + generator + "&selGenCount=20&selGenType=" + type)
  end
  response = Net::HTTP.get_response(uri)
  page = Nokogiri::HTML(response.body)
