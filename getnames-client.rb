@@ -27,9 +27,9 @@ else
  end
 end
 if type.nil?
- uri = URI.parse(webgetnames + generator)
+ uri = URI.parse(webgetnames + '/' + generator)
 else
- uri = URI.parse(webgetnames + generator + "/" + type)
+ uri = URI.parse(webgetnames + '/' + generator + "/" + type)
 end
 request = Net::HTTP::Get.new(uri.request_uri)
 http = Net::HTTP.new(uri.host, uri.port)
